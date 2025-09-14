@@ -7,25 +7,16 @@ import { UserService } from './user.service';
 export class UserController {
     constructor(private userService: UserService) {}
 
-    @Post('signup')
-    async singnupUser(
-        @Body() userData: Prisma.UserCreateInput,
-    ):Promise<UserModel> {
-        return this.userService.createUser(userData)
-    }
-
     @Get('profiles')
     async getAllUsers(): Promise<UserModel[] | null> {
         return this.userService.getAllUsers();
 
     }
 
-
     @Get('profiles/:id')
     async getUserById(@Param('id') id: string): Promise<UserModel | null> {
         return this.userService.getUserById(id);
     }
-
 
 
     @Post('delete/:id')
